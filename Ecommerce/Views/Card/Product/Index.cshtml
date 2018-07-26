@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Ecommerce.Entity.Product>
+
+@{
+    ViewBag.Title = "Index"; Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+<div class="container">
+<h2>Ürünler</h2>
+<hr />
+<p>
+    @Html.ActionLink("Yeni Ürün Ekle", "Create",null, new { @class="btn btn-success btn-sm"})
+</p><hr />
+<table class="table table-bordered table-hover table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+
+        <th style="width:100px;">
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td width="100px;">
+<img src="~/Upload/@item.Image" width="100%"/>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock)
+        </td>
+
+        <td>
+@if (item.IsApproved==true)
+{
+    <label class="badge badge-success">
+        <i class="fa fa-check-circle-o"></i>Onaylı
+    </label>
+}
+else
+{
+    <label class="badge badge-danger">
+        Onay Bekliyor
+    </label>  
+}
+        </td>
+        <td style="width:220px;">
+            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+            @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
+            @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>
+    </div>

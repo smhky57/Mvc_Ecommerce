@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Ecommerce.Models.UserOrderModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container">
+    <h2>Sipariş Bilgileriniz</h2><hr />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Order Id</th>
+                        <th>Oder Number</th>
+                        <th>Oder State</th>
+                    <th>Order State</th>
+                    <th>Total</th>
+                       <th style="width:120px;"></th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.OrderId
+                            </td>
+                            <td>@item.OrderNumber</td>
+                            <td>
+                                @if (item.OrderState == Ecommerce.Entity.EnumOrderState.Waiting)
+                                {
+                                    <span class="badge badge-danger">Waiting</span>
+                                }
+                                else if (item.OrderState == Ecommerce.Entity.EnumOrderState.Completed)
+                                {
+                                    <span class="badge badge-success">Completed</span>
+                                }
+                            </td>
+                            <td>@item.OrderDate.ToShortDateString()</td>
+                            <td>@item.Total</td>
+                            <td>
+                                @Html.ActionLink("Sipariş Detayları", "Details", new { id = item.OrderId }, new { @class="btn btn-primary "})
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

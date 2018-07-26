@@ -1,0 +1,33 @@
+﻿@using Ecommerce.Models;
+@model IEnumerable<Ecommerce.Models.ProductModel>
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="container pb-5">
+    <div class="row">
+
+        <div class="col-md-3">
+
+
+          @Html.Action("GetCategories","Home")
+
+        </div>
+        <div class="col-md-9">
+            <div class="card-deck">
+                @if (Model.Count()==0)
+                {
+                    <div class="alert alert-danger">Bu kategoriye ait ürün bulunmamaktadır.</div>
+                }
+                else
+                {
+                        <div class="alert alert-warning"><strong>@Model.Count() adet</strong> ürün bulundu.</div>
+                }
+
+                @Html.Partial("ProductList", Model)
+
+
+            </div>
+        </div>
+    </div>
+</div>

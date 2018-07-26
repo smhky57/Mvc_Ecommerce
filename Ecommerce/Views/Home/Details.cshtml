@@ -1,0 +1,97 @@
+﻿@model Ecommerce.Entity.Product
+@{
+    ViewBag.Title = "Details";
+}
+
+<div id="product-details" class="container pb-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="~/Upload/@Model.Image" class="img-fluid w-100 rounded" />
+        </div>
+
+        <div class="col-md-6">
+            <div class="row mt-1">
+                <div class="col-md-12">
+                    <h1>@Model.Name</h1>
+
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    @if (Model.Stock == null)
+                    {
+                        <span class="badge badge-danger">Out Of Stock</span>
+                    }
+                    else
+                    {
+                    <span class="badge badge-primary">In Stock => @Model.Stock</span>
+                    }<span class="product-number">#2566</span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div id="description">
+                        @Model.Description
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i>
+                    <span class="badge badge-success">57</span>
+                </div>
+                <div id="write-review" class="col-md-4">
+                    Write a review
+                </div>
+            </div>
+
+            <div class="row mt-1">
+                <div class="col-md-12">
+                    <h4 id="product-price">$@Model.Price</h4>
+                   @using (Html.BeginForm("SepeteEkle","Card"))
+                               {
+                       @Html.HiddenFor(i=>i.Id)
+                        <button type ="submit" class="btn btn-successs">
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        Add to Card
+                    </button>
+                   }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="bd-example bd-example-tabs">
+                <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ev</font></font></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active show" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Profil</font></font></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Temas</font></font></a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Consultat occaecat ullamco amet non eiusmod nostrud dolore irure incididunt öyküsü anim sunt officia. </font><font style="vertical-align: inherit;">Fuhiat velit proident aliquip nisi incididunt nostrud egzersiz proident est nisi. </font><font style="vertical-align: inherit;">Irure magna elit commodo anim veniam culpa eiusmod id nostrud veniam reklam içinde cupidatat oturmak. </font><font style="vertical-align: inherit;">Eiusmod eu yatıştırıcı minim anim aliquip cupidatat culpa excepteur quis sonuçlanır. </font><font style="vertical-align: inherit;">Occaecat ab alıştırma irure Lorem incididunt nostrud oturmak.</font></font></p>
+                    </div>
+                    <div class="tab-pane fade active show" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">İlan edilen tüm Mesajları göster Ipsum ipsum culpa mollit commodo mollit ex. </font><font style="vertical-align: inherit;">Aunt commodo est sint nisi deserunt pariatur yapmak. </font><font style="vertical-align: inherit;">Aliquip ex eiusmod voluptate egzersiz cillum id incididunt elit sunt. </font><font style="vertical-align: inherit;">Qui minim oturmak Lorem id et dolore velit Lorem amet exercitation duis deserunt. </font><font style="vertical-align: inherit;">Id lab id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id id</font></font></p>
+                    </div>
+                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                        <p>Est quis nulla laborum officia ad nisi ex nostrud culpa Lorem excepteur aliquip dolor aliqua irure ex. Nulla ut duis ipsum nisi elit fugiat commodo sunt reprehenderit laborum veniam eu veniam. Eiusmod minim exercitation fugiat irure ex labore incididunt do fugiat commodo aliquip sit id deserunt reprehenderit aliquip nostrud. Amet ex cupidatat excepteur aute veniam incididunt mollit cupidatat esse irure officia elit do ipsum ullamco Lorem. Ullamco ut ad minim do mollit labore ipsum laboris ipsum commodo sunt tempor enim incididunt. Commodo quis sunt dolore aliquip aute tempor irure magna enim minim reprehenderit. Ullamco consectetur culpa veniam sint cillum aliqua incididunt velit ullamco sunt ullamco quis quis commodo voluptate. Mollit nulla nostrud adipisicing aliqua cupidatat aliqua pariatur mollit voluptate voluptate consequat non.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,82 @@
+﻿@model Ecommerce.Models.OrderDetailsModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>Sipariş Detayları</h2><hr />  @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["message"]
+        </div>
+    }
+    <div class="row">
+        <div class="col-md-12">
+            <dl class="row">
+                <dt class="col-sm-3">Oder State</dt>
+                <dd class="col-sm-9">
+
+                    @using (Html.BeginForm("UpdateOrderState", "Order", FormMethod.Post))
+                    {
+                        @Html.HiddenFor(i => i.OrderId)
+                        <div class="row">
+
+                            <div class="col-md-7">
+
+                                @Html.EnumDropDownListFor(i => i.OrderState, "Select Order State", new { @class = "form-control col-md-12" })
+                            </div>
+                            <div class="col-md-5">
+                                <button type="submit" class="btn btn-success" value="Update">Update</button>
+                            </div>
+                        </div>}
+                </dd>
+                <dt class="col-sm-3">Oder Id</dt>
+                <dd class="col-sm-9">@Model.OrderId</dd>
+                <dt class="col-sm-3">Oder Number</dt>
+                <dd class="col-sm-9">@Model.OrderNumber</dd>
+
+                <dt class="col-sm-3">Oder Date</dt>
+                <dd class="col-sm-9">@Model.OrderDate.ToShortDateString()</dd>
+                <dt class="col-sm-3">Total</dt>
+                <dd class="col-sm-9">@Model.Total.ToString("c")</dd>
+                <dt class="col-sm-3">Adres</dt>
+                <dd class="col-sm-9">
+                    @Model.AdresBasligi
+                    <hr />@Model.Adres1<br />@Model.Sehir-@Model.Semt-@Model.Mahalle<br />
+                </dd>
+                <dt class="col-sm-3">Products</dt>
+                <dd class="col-sm-9">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Image </th>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderLines)
+                            {
+                                <tr>
+                                    <td><img src="~/Upload/@item.Image" width="70" /></td>
+                                    <td>@item.ProductName</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.Price.ToString("c")</td>
+                                    <td><a href="/Home/Details/@item.ProductId" class="btn btn-primary btn-sm" target="_blank">Product Details</a></td>
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+                </dd>
+
+            </dl>
+
+        </div>
+    </div>
+</div>
